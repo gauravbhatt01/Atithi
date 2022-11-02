@@ -1,6 +1,23 @@
+'''
+Description:
+jesusBot : eradicate bots that blot the instagram profile. 
+
+Algorithm: 
+
+start
+Pocket spammerBot to get user media from userlist 
+select latest post1, post2 and get all likes from the post
+for media1 and media2:
+    if likes are greater than 100:
+        get uername from user_id
+        unfollow the liker
+end
+'''
+
 from instabot import Bot
 import os
 import glob
+
 
 from tqdm.std import tqdm
 
@@ -24,17 +41,7 @@ for user in user_list:
     cnt = 0
 
     for liker in tqdm(likers):
-        if cnt < 10:
+        if cnt < 100:
             print (bot.get_username_from_user_id(liker))
-            bot.follow(liker)
-            cnt += 1
-
-    likers = bot.get_media_likers(post2)
-
-    cnt = 0
-
-    for liker in tqdm(likers):
-        if cnt < 10:
-            print (bot.get_username_from_user_id(liker))
-            bot.follow(liker)
+            bot.unfollow(liker)
             cnt += 1
